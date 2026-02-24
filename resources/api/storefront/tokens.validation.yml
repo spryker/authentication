@@ -1,0 +1,15 @@
+post:
+    username:
+        - NotBlank:
+              message: 'Username (email) is required'
+        - Email:
+              message: 'Username must be a valid email address'
+
+    password:
+        - NotBlank:
+              message: 'Password is required'
+        - Length:
+              min: 12
+              max: 128
+              minMessage: 'Password must be at least {{ limit }} characters for security'
+              maxMessage: 'Password cannot exceed {{ limit }} characters'

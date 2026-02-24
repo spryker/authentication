@@ -1,0 +1,5 @@
+{
+    "exclude": {
+        "spryker/api-platform": "Should be installed only if ApiPlatform is in use"
+    }
+}

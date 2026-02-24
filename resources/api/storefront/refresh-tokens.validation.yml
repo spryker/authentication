@@ -1,0 +1,12 @@
+post:
+    refreshToken:
+        - NotBlank:
+              message: 'Refresh token is required'
+        - Length:
+              min: 10
+              minMessage: 'Refresh token format is invalid'
+
+delete:
+    refreshToken:
+        - NotBlank:
+              message: 'Refresh token is required for revocation'

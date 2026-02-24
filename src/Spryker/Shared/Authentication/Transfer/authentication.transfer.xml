@@ -9,6 +9,27 @@
     </transfer>
 
     <transfer name="OauthResponse">
+        <property name="isValid" type="bool" description="A boolean flag indicating if a token or request is valid."/>
+        <property name="error" type="OauthError" description="An error message or object describing a problem that occurred."/>
+        <property name="tokenType" type="string"/>
+        <property name="expiresIn" type="int"/>
+        <property name="accessToken" type="string"/>
+        <property name="refreshToken" type="string"/>
+    </transfer>
+
+    <transfer name="OauthRequest">
+        <property name="grantType" type="string" description="The method by which an application gets an access token (e.g., 'password', 'refresh_token')."/>
+        <property name="username" type="string" description="The login name for a user account, typically an email address."/>
+        <property name="password" type="string"/>
+        <property name="refreshToken" type="string"/>
+    </transfer>
+
+    <transfer name="RevokeRefreshTokenResponse">
+        <property name="isSuccessful" type="bool"/>
+    </transfer>
+
+    <transfer name="OauthError">
+        <property name="message" type="string" description="A message providing information, success, or error details."/>
     </transfer>
 
 </transfers>
