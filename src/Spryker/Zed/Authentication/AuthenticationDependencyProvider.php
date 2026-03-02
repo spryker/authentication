@@ -20,11 +20,6 @@ class AuthenticationDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const PLUGINS_AUTHENTICATION_SERVER = 'PLUGINS_AUTHENTICATION_SERVER';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = parent::provideBusinessLayerDependencies($container);
@@ -33,11 +28,6 @@ class AuthenticationDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addAuthenticationServerPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_AUTHENTICATION_SERVER, function (Container $container) {

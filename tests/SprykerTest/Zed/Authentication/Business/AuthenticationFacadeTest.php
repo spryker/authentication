@@ -39,9 +39,6 @@ class AuthenticationFacadeTest extends Unit
      */
     protected const FAKE_ACCESS_TOKEN = 'FAKE_ACCESS_TOKEN';
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -49,9 +46,6 @@ class AuthenticationFacadeTest extends Unit
         $this->setUserProvider();
     }
 
-    /**
-     * @return void
-     */
     public function testAuthenticateIsSuccessful(): void
     {
         // Arrange
@@ -67,9 +61,6 @@ class AuthenticationFacadeTest extends Unit
         $this->assertNotEmpty($glueAuthenticationResponseTransfer->getOauthResponse()->getAccessToken());
     }
 
-    /**
-     * @return void
-     */
     public function testAuthenticateThrowsMissingServerPluginException(): void
     {
         // Arrange
@@ -84,9 +75,6 @@ class AuthenticationFacadeTest extends Unit
         $glueAuthenticationResponseTransfer = $authenticateFacade->authenticate($glueAuthenticationRequestTransfer);
     }
 
-    /**
-     * @return void
-     */
     protected function setAuthenticationServer(): void
     {
         $this->tester->setDependency(
@@ -117,9 +105,6 @@ class AuthenticationFacadeTest extends Unit
         return $authenticationServerPluginMock;
     }
 
-    /**
-     * @return void
-     */
     protected function setUserProvider(): void
     {
         $this->tester->setDependency(

@@ -35,9 +35,6 @@ class AuthenticationClientTest extends Unit
      */
     protected const FAKE_ACCESS_TOKEN = 'FAKE_ACCESS_TOKEN';
 
-    /**
-     * @return void
-     */
     public function testAuthenticateIsSuccessful(): void
     {
         // Arrange
@@ -53,9 +50,6 @@ class AuthenticationClientTest extends Unit
         $this->assertNotEmpty($glueAuthenticationResponseTransfer->getOauthResponse()->getAccessToken());
     }
 
-    /**
-     * @return void
-     */
     public function testAuthenticateThrowsMissingServerPluginException(): void
     {
         //Arrange
@@ -70,9 +64,6 @@ class AuthenticationClientTest extends Unit
         $glueAuthenticationResponseTransfer = $authenticateClient->authenticate($glueAuthenticationRequestTransfer);
     }
 
-    /**
-     * @return void
-     */
     protected function setAuthenticationServer(): void
     {
         $this->tester->setDependency(

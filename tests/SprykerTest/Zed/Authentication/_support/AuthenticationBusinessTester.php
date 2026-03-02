@@ -57,9 +57,6 @@ class AuthenticationBusinessTester extends Actor
      */
     protected const TEST_PASSWORD = 'change123';
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueAuthenticationRequestTransfer
-     */
     public function haveGlueAuthenticationRequestTransfer(): GlueAuthenticationRequestTransfer
     {
         $glueAuthenticationRequestContextTransfer = (new GlueAuthenticationRequestContextTransfer())
@@ -73,9 +70,6 @@ class AuthenticationBusinessTester extends Actor
         ))->build();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\OauthRequestTransfer
-     */
     protected function haveOauthRequestTransfer(): OauthRequestTransfer
     {
         return (new OauthRequestBuilder(

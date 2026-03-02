@@ -17,11 +17,6 @@ class AuthenticationDependencyProvider extends AbstractDependencyProvider
      */
     public const PLUGINS_AUTHENTICATION_SERVER = 'PLUGINS_AUTHENTICATION_SERVER';
 
-    /**
-     * @param \Spryker\Client\Kernel\Container $container
-     *
-     * @return \Spryker\Client\Kernel\Container
-     */
     public function provideServiceLayerDependencies(Container $container): Container
     {
         $container = parent::provideServiceLayerDependencies($container);
@@ -30,11 +25,6 @@ class AuthenticationDependencyProvider extends AbstractDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Client\Kernel\Container $container
-     *
-     * @return \Spryker\Client\Kernel\Container
-     */
     protected function addAuthenticationServerPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_AUTHENTICATION_SERVER, function (Container $container) {

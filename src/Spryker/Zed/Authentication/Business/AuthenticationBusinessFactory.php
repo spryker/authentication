@@ -17,9 +17,6 @@ use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
  */
 class AuthenticationBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\Authentication\Business\Executor\AuthenticationServerExecutorInterface
-     */
     public function createAuthenticationServerExecutor(): AuthenticationServerExecutorInterface
     {
         return new AuthenticationServerExecutor(

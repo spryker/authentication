@@ -13,9 +13,6 @@ use Spryker\Client\Kernel\AbstractFactory;
 
 class AuthenticationFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Client\Authentication\Executor\AuthenticationServerExecutorInterface
-     */
     public function createAuthenticationServerExecutor(): AuthenticationServerExecutorInterface
     {
         return new AuthenticationServerExecutor(
