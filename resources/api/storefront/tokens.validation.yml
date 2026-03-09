@@ -1,15 +1,15 @@
 post:
     username:
         - NotBlank:
-              message: 'Username (email) is required'
+              message: 'validation.not_blank'
         - Email:
-              message: 'Username must be a valid email address'
+              message: 'validation.email'
 
     password:
         - NotBlank:
-              message: 'Password is required'
+              message: 'validation.not_blank'
         - Length:
-              min: 12
+              min: 8
               max: 128
-              minMessage: 'Password must be at least {{ limit }} characters for security'
-              maxMessage: 'Password cannot exceed {{ limit }} characters'
+              minMessage: 'customer.password.error.min_length'
+              maxMessage: 'customer.password.error.max_length'

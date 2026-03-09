@@ -13,7 +13,10 @@ use Codeception\Stub;
 use Generated\Shared\Transfer\OauthErrorTransfer;
 use Generated\Shared\Transfer\OauthResponseTransfer;
 use Generated\Shared\Transfer\RevokeRefreshTokenResponseTransfer;
+use Generated\Shared\Transfer\StoreTransfer;
+use Spryker\Client\GlossaryStorage\GlossaryStorageClientInterface;
 use Spryker\Client\Oauth\OauthClientInterface;
+use Spryker\Client\Store\StoreClientInterface;
 use SprykerTest\ApiPlatform\Test\StorefrontApiTestCase;
 use SprykerTest\Glue\Authentication\StorefrontApiTester;
 
@@ -33,8 +36,6 @@ class AuthenticationStorefrontApiTest extends StorefrontApiTestCase
 
     public function testGivenValidCredentialsWhenCreatingTokenViaPostThenTokenIsReturnedSuccessfully(): void
     {
-//        $this->markTestSkipped('Currently not working');
-
         // Arrange
         $requestData = [
             'data' => [
@@ -55,6 +56,7 @@ class AuthenticationStorefrontApiTest extends StorefrontApiTestCase
         ]);
 
         $this->getContainer()->set(OauthClientInterface::class, $clientStub);
+        $this->mockStoreClient();
 
         // Act
         $this->createClient()->request('POST', '/tokens', ['json' => $requestData]);
@@ -95,12 +97,20 @@ class AuthenticationStorefrontApiTest extends StorefrontApiTestCase
         ]);
 
         $this->getContainer()->set(OauthClientInterface::class, $clientStub);
+        $this->mockStoreClient();
+
+        $glossaryStub = Stub::makeEmpty(GlossaryStorageClientInterface::class, [
+            'translate' => function (string $id): string {
+                return sprintf('%s-translated-by-mock', $id);
+            },
+        ]);
+        $this->getContainer()->set(GlossaryStorageClientInterface::class, $glossaryStub);
 
         // Act
         $this->createClient()->request('POST', '/tokens', ['json' => $requestData]);
 
         // Assert
-        $this->assertResponseStatusCodeSame(500);
+        $this->assertResponseStatusCodeSame(401);
         $this->assertJsonContains(['@type' => 'Error']);
     }
 
@@ -126,6 +136,7 @@ class AuthenticationStorefrontApiTest extends StorefrontApiTestCase
         ]);
 
         $this->getContainer()->set(OauthClientInterface::class, $clientStub);
+        $this->mockStoreClient();
 
         // Act
         $this->createClient()->request('POST', '/refresh-tokens', ['json' => $requestData]);
@@ -167,6 +178,14 @@ class AuthenticationStorefrontApiTest extends StorefrontApiTestCase
 
         $this->getContainer()->set(OauthClientInterface::class, $clientStub);
 
+        $glossaryStub = Stub::makeEmpty(GlossaryStorageClientInterface::class, [
+            'translate' => function (string $id): string {
+                return sprintf('%s-translated-by-mock', $id);
+            },
+        ]);
+        $this->getContainer()->set(GlossaryStorageClientInterface::class, $glossaryStub);
+        $this->mockStoreClient();
+
         // Act
         $this->createClient()->request('POST', '/refresh-tokens', ['json' => $requestData]);
 
@@ -188,11 +207,24 @@ class AuthenticationStorefrontApiTest extends StorefrontApiTestCase
         ]);
 
         $this->getContainer()->set(OauthClientInterface::class, $clientStub);
+        $this->mockStoreClient();
 
         // Act
         $this->createClient()->request('DELETE', '/refresh-tokens/' . $refreshToken);
 
         // Assert
         $this->assertResponseStatusCodeSame(204);
+    }
+
+    protected function mockStoreClient(): void
+    {
+        $storeTransfer = new StoreTransfer();
+        $storeTransfer->setAvailableLocaleIsoCodes(['de' => 'de_DE', 'en' => 'en_US']);
+
+        $clientStub = Stub::makeEmpty(StoreClientInterface::class, [
+            'getCurrentStore' => $storeTransfer,
+        ]);
+
+        $this->getContainer()->set(StoreClientInterface::class, $clientStub);
     }
 }
