@@ -1,12 +1,12 @@
 post:
     refreshToken:
         - NotBlank:
-              message: 'Refresh token is required'
+              message: 'validation.not_blank'
         - Length:
               min: 10
-              minMessage: 'Refresh token format is invalid'
+              minMessage: 'validation.min_length'
 
 delete:
     refreshToken:
         - NotBlank:
-              message: 'Refresh token is required for revocation'
+              message: 'validation.not_blank'

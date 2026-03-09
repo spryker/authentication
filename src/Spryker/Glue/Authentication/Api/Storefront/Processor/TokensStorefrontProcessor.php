@@ -16,6 +16,7 @@ use Generated\Api\Storefront\TokensStorefrontResource;
 use Generated\Shared\Transfer\OauthRequestTransfer;
 use Spryker\Client\Oauth\OauthClientInterface;
 use Spryker\Glue\Authentication\AuthenticationConfig;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -54,7 +55,7 @@ class TokensStorefrontProcessor implements ProcessorInterface
         if (!$oauthResponseTransfer->getIsValid()) {
             $errorMessage = $oauthResponseTransfer->getError()?->getMessage() ?? 'Authentication failed';
 
-            throw new HttpException(500, $errorMessage);
+            throw new HttpException(Response::HTTP_UNAUTHORIZED, $errorMessage);
         }
 
         $resource->tokenType = $oauthResponseTransfer->getTokenType();

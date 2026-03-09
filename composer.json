@@ -12,9 +12,11 @@
     "require-dev": {
         "spryker/code-sniffer": "*",
         "spryker/container": "*",
+        "spryker/glossary-storage": "*",
         "spryker/oauth": "*",
         "spryker/oauth-user-connector": "*",
         "spryker/propel": "*",
+        "spryker/store": "*",
         "spryker/testify": "*"
     },
     "autoload": {

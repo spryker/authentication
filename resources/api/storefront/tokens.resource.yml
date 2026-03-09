@@ -5,7 +5,7 @@ resource:
 
     operations:
         - type: Post
-          output:
+          normalizationContext:
               gen_id: false
 
     processor: Spryker\Glue\Authentication\Api\Storefront\Processor\TokensStorefrontProcessor
