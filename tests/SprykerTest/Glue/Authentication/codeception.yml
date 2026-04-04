@@ -13,6 +13,7 @@ suites:
             enabled:
                 - \SprykerTest\Shared\Testify\Helper\Environment
                 - \SprykerTest\Shared\Testify\Helper\LocatorHelper
+                - \SprykerTest\Shared\Testify\Helper\DependencyHelper
                 - \SprykerTest\Service\Container\Helper\ContainerHelper
                 - \SprykerTest\ApiPlatform\Helper\ApiPlatformHelper:
                       mode: 'core'
