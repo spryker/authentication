@@ -1,7 +1,6 @@
 namespace: Authentication
 include:
     - tests/SprykerTest/Client/Authentication
-    - tests/SprykerTest/Glue/Authentication
     - tests/SprykerTest/Zed/Authentication
 
 paths:
